@@ -1,9 +1,17 @@
+from core.metrics import *
+
 """
 Function conputing A* algorithm in a generic fashion
 """
-def ComputeAStar(startNode, endNode):
+def ComputeAStar(startNode, endNode, *metrics):
     openSet = []
     closedSet = []
+
+    # Additional parameters for metrics computation
+    status = False
+    iteration = 0
+
+    metricsResult = []
 
     openSet.append(startNode)
 
@@ -12,6 +20,10 @@ def ComputeAStar(startNode, endNode):
         currentNode = openSet[0]
 
         if(currentNode == endNode):
+            status = True
+            if metrics != None:
+                ComputeMetrics(metricsResult, [iteration, status], *metrics)
+                print(metricsResult)
             ConstructPath(currentNode)
             break
 
@@ -29,7 +41,24 @@ def ComputeAStar(startNode, endNode):
 
         # Ordering the list considering global cost
         openSet = sorted(openSet, key=lambda node : node.g)
-        #print(openSet)
+
+        # Call custom metrics each lap
+        if metrics != None:
+            ComputeMetrics(metricsResult, [iteration, status], *metrics)
+
+        iteration+=1
+
+"""
+Function that computes all custom metric given by a user and store their results
+"""
+def ComputeMetrics(results, params, *metrics):
+    print(metrics)
+    result = []
+    for customMetric in metrics:
+        result.append(metric(customMetric, *params))
+
+    return results.append(result)
+
 """
 Function used to reconstruct the result path of the algorithm
 """

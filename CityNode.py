@@ -1,4 +1,4 @@
-from GenericNode import GenericNode
+from core.GenericNode import GenericNode
 
 class CityNode(GenericNode):
 
