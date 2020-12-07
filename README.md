@@ -6,7 +6,7 @@
 
 The Generic A* Repository is made to release the search algorithm project of my final year in engineering school.  As you might have guessed, this repository contains an A* implementation. The goal of the project was to enhance the algorithm in any way we wanted. I choose to try and make the more generic implementation possible allowing the user to define his own problems and node structure according to a given template. And then compute the A* algorithm on the project of his choosing.
 
-## How to use GA*
+## How to use GA*​
 
 ### Global architecture 
 
