@@ -41,7 +41,7 @@ Project
 
 ### Getting started
 
-To ways you can start playing with GA*:
+Two ways you can start playing with GA*:
 
 - Clone the repository and execute the demo folder
 - Clone the repository and launch the interactive **Jupyter **:telescope: file.
@@ -58,15 +58,15 @@ Some methods will need to be implement in order for your node to work. In case o
 
 ### __repr\_\_
 
-A **representation** even minimalistic is needed in order for you node to be displayed and for the GA* to show you the reconstructed resolution path.
+A **representation**, even a minimalistic one, is needed in order for you node to be displayed and for the GA* to show you the reconstructed resolution path.
 
 ### GetNeighbors 
 
-The **GetNeighbors** method should describe how you travel in your graph from a example to the next. For example: imagine a labyrinth made of squared spot. Your neighbors can be the 4 or 8 spots next to you that aren't walls.
+The **GetNeighbors** method should describe how you travel in your graph from a node to the next. For example: imagine a labyrinth made of squared spot. Your neighbors can be the 4 or 8 spots next to you that aren't walls.
 
 ### SetHCost
 
-The **SetHCost** method is used to compute the heuristic needed by the classic A* algorithm. If you don't want to compute an heuristic you can always set you H cost to be zero. The GA* would then computes as a Dijkstra implementation. In order to compute your heuristic, the method is given a **target** :red_circle: which is the end node given to the computeAstar function. Your method must compute a undermining estimate of the remaining distance to be traveled in your graph.
+The **SetHCost** method is used to compute the heuristic needed by the classic A* algorithm. If you don't want to compute an heuristic you can always set you H cost to be zero. The GA* would then computes as a Dijkstra implementation. In order to compute your heuristic, the method is given a **target** :red_circle: which is the end node given to the computeAstar function. Your method must compute an undermining estimate of the remaining distance to be traveled in your graph.
 
 :warning: **Warning**: This setHCost method isn't designed to return the h value. you must assigned the *self.h* attribute of your node while in the scope of this function. Otherwise the GA* will behave as a Dijkstra pathfinder and might be much slower.
 
@@ -76,7 +76,7 @@ There is no limitation in the number of heuristic you can implement, you just ne
 
 The **Dist** method is passed another node as parameter. It must return the distance between the two nodes considered. 
 
-For example: In a grid like problem where you move one spot at a time the *Dist* method might always return one, but in a more complex problem let's say a road networks, the *Dist* method is expected to compute the time represented to travel this road. It can be the distance between the two points joined by the road but it might also consider the speed limit or the traffic on this segment .
+For example: In a grid like problem where you move one spot at a time the *Dist* method might always return one, but in a more complex problem let's say a road networks, the *Dist* method is expected to compute the time represented to travel this road. It can be the distance between the two points joined by the road but it might also consider the speed limit or even traffic on this segment .
 
 :warning: Remember, the algorithm might prefer the fastest way, the more accurate your distance between two nodes, the better the algorithm will be at giving you the real best solution in your graph.
 
