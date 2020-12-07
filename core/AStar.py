@@ -43,6 +43,8 @@ def ComputeAStar(startNode, endNode, verbose = False, *metrics):
         # Call custom metrics each lap
         if metrics != None:
             ComputeMetrics(metricsResult, [status, iteration, openSet, closedSet], *metrics)
+            if(verbose and iteration == 0): DisplayMetric(iteration, metricsResult[iteration], True, *metrics)
+            elif(verbose): DisplayMetric(iteration, metricsResult[iteration], False, *metrics)
 
         iteration+=1
 
@@ -57,15 +59,21 @@ def ComputeMetrics(results, params, *metrics):
 
     return results.append(result)
 
+"""
+Function displaying all metric at the end of the A* search
+"""
 def DisplayMetrics(results, *metrics):
-    display = False
 
+    display = False
     header = ""
+
+    # creating display header
     header += '| Index |'
     for metric in metrics:
         header += f' {metric.name} |'
-
     print(header)
+
+    # adding all relevant display
     for result in results:
         line = ""
         for res in result:
@@ -79,6 +87,35 @@ def DisplayMetrics(results, *metrics):
                     line += '        |'
             print(f'{line}\n')
         display = False
+
+"""
+Function used by verbosity to display a single iteration metric results
+"""
+
+def DisplayMetric(iteration, result, header = False,  *metrics):
+
+    # if header is requested  create and displays header info
+    if(header):
+        header = ""
+        header += '| Index |'
+        for metric in metrics:
+            header += f' {metric.name} |'
+        print(header)
+
+    display = False
+    line = ""
+    for res in result:
+        if(res != None): display = True
+    if(display):
+        line += f'   {iteration}   |'
+        for res in result:
+            if(res != None):
+                line += f' {res[1]} |'
+            else:
+                line += '        |'
+    else:
+        line = f'  {iteration} |   No metric results to display !     '
+    print(f'{line}\n')
 
 """
 Function used to reconstruct the result path of the algorithm
