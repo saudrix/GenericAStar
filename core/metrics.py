@@ -5,15 +5,18 @@ metric is a base function that check a custom metric signature and
 if it checks out computes it
 """
 
+class Metric:
+    __metricsCount = 0
 
-def metric(customMetric, iteration, status):
-    metricSignature = signature(customMetric)
-    for args in metricSignature.parameters.values():
-        print(args)
+    def __init__(self, name):
+        self.name = name
+        Metric.__metricsCount += 1
 
-    return customMetric(iteration, status)
+    def setup(self, status, iter, opened, closed):
+        self.status = status
+        self.iter = iter
+        self.opened = opened
+        self.closed = closed
 
-def GetIterNumber(iteration : int , status : bool ) -> tuple:
-    if(status):
-        return ("ExecTime",iteration)
-    else: return None
+    def compute(self):
+        return (self.name, None)

@@ -1,5 +1,3 @@
-from core.metrics import *
-
 """
 Function conputing A* algorithm in a generic fashion
 """
@@ -22,7 +20,7 @@ def ComputeAStar(startNode, endNode, *metrics):
         if(currentNode == endNode):
             status = True
             if metrics != None:
-                ComputeMetrics(metricsResult, [iteration, status], *metrics)
+                ComputeMetrics(metricsResult, [status, iter, openSet, closedSet], *metrics)
                 print(metricsResult)
             ConstructPath(currentNode)
             break
@@ -44,7 +42,7 @@ def ComputeAStar(startNode, endNode, *metrics):
 
         # Call custom metrics each lap
         if metrics != None:
-            ComputeMetrics(metricsResult, [iteration, status], *metrics)
+            ComputeMetrics(metricsResult, [status, iter, openSet, closedSet], *metrics)
 
         iteration+=1
 
@@ -52,10 +50,10 @@ def ComputeAStar(startNode, endNode, *metrics):
 Function that computes all custom metric given by a user and store their results
 """
 def ComputeMetrics(results, params, *metrics):
-    print(metrics)
     result = []
-    for customMetric in metrics:
-        result.append(metric(customMetric, *params))
+    for metric in metrics:
+        metric.setup(*params)
+        result.append(metric.compute())
 
     return results.append(result)
 
