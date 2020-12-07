@@ -10,6 +10,7 @@ from customMetrics.depth import InspectDepth
 from customMetrics.wide import InspectWidth
 
 """
+# Desciption for the TSP problem with 7 randomly placed cities
 start = CityNode('Yup',2,1,['Bdx','Tes','Mar','StJ'])
 CityNode('Bdx',2,4, ['Lib','Tes','StJ','Yup'])
 CityNode('Mar',5,0,['Lib','Tes','Yup','StJ','Tls'])
@@ -19,6 +20,9 @@ CityNode('Tls',8,4,['Mar','Lib','Tes'])
 end = CityNode('Lib',4,5,['Bdx','Tes','Mar','Tls'])
 """
 
+"""
+Desciption for a Taquin resolution (3x3) with an easy and a harder exemple
+"""
 #start = TaquinNode([['1','2','3'],['4','5','6'],['7','-','8']])
 start = TaquinNode([['4','7','1'],['8','6','3'],['2','5','-']])
 end = TaquinNode([['1','2','3'],['4','5','6'],['7','8','-']])

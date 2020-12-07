@@ -4,6 +4,9 @@ import time
 sys.path.append('..\core')
 from core.Metrics import Metric
 
+"""
+A simple default metric for the generic A* algorithm computing execution time
+"""
 class ExecTimeMetric(Metric):
 
     def __init__(self, name):

@@ -3,6 +3,9 @@ import sys
 sys.path.append('..\core')
 from core.Metrics import Metric
 
+"""
+A simple default depth metric for the generic A* algorithm
+"""
 class InspectDepth(Metric):
 
     def __init__(self, name, verbose = False):

@@ -1,8 +1,7 @@
 from inspect import signature
 
 """
-metric is a base function that check a custom metric signature and
-if it checks out computes it
+Metric is a template class to inherit in custom metrics for the generic A* program
 """
 
 class Metric:
@@ -16,6 +15,11 @@ class Metric:
         self.closed = []
         Metric.__metricsCount += 1
 
+    """
+    When called the Metric.setup function is called and global parameters of the
+    current A* execution are given to the Metric object.
+    These data are to be used in the override compute method in children metrics
+    """
     def setup(self, status, iteration, opened, closed):
         self.status = status
         self.iteration = iteration

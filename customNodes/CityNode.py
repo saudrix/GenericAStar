@@ -1,5 +1,10 @@
 from core.GenericNode import GenericNode
 
+"""
+A custom Node strucure inherited from the GenericNode class it describe a TSP
+problem and can support any number of cities storing them in a class variable
+describing the total graph created for a specific computation
+"""
 class CityNode(GenericNode):
 
     CITIES = []
@@ -13,6 +18,8 @@ class CityNode(GenericNode):
         CityNode.CITIES.append(self)
         pass
 
+    # A city needs to be define with its neigbors telling the node wich
+    # connection are enabled to compute the path
     def GetNeighbors(self):
         result = []
         for city in CityNode.CITIES:

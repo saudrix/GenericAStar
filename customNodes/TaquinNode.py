@@ -1,12 +1,17 @@
 from core.GenericNode import GenericNode
 from copy import copy, deepcopy
 
+"""
+A node class inherited from the GenericNode clas that describe a
+3x3 Taquin problem to be solved by the generic A* program
+"""
 class TaquinNode(GenericNode):
 
     def __init__(self, data, parent = None):
         GenericNode.__init__(self, parent)
         self.data = data
 
+    # A custom representation to display our taquin board
     def __repr__(self):
         disp = ''
         for i in range(0,len(self.data)):
@@ -14,15 +19,14 @@ class TaquinNode(GenericNode):
                 disp += self.data[i][j]
                 disp += " "
             disp += '\n'
-        #print(self.data[0] + '\n' + self.data[1] + '\n'+  self.data[2])
         return disp
 
+    # Redifining equality between nodes enable the A* code to work properly
     def __eq__(self, other):
         if other == None: return False
         else: return self.data == other.data
 
     def GetNeighbors(self):
-
         neighbors = []
         line = 0
         column = 0
@@ -77,6 +81,7 @@ class TaquinNode(GenericNode):
 
 
     """ Sum of Manathan distances """
+    # Any number of diferent heuristics can be implemented
     def SetHCost(self, target):
         cost = 0
         #Getting threw lines

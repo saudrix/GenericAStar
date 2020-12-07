@@ -1,3 +1,6 @@
+"""
+A template class to inherit in custom nodes to be used in the generic A* program
+"""
 class GenericNode:
 
     def __init__(self, parent = None):
