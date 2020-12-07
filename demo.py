@@ -9,7 +9,6 @@ from customMetrics.time import ExecTimeMetric
 from customMetrics.depth import InspectDepth
 from customMetrics.wide import InspectWidth
 
-
 """
 start = CityNode('Yup',2,1,['Bdx','Tes','Mar','StJ'])
 CityNode('Bdx',2,4, ['Lib','Tes','StJ','Yup'])
@@ -25,7 +24,7 @@ start = TaquinNode([['4','7','1'],['8','6','3'],['2','5','-']])
 end = TaquinNode([['1','2','3'],['4','5','6'],['7','8','-']])
 
 def main():
-    ComputeAStar(start, end, False, ExecTimeMetric("time"), InspectDepth("depth"), InspectWidth("width"))
+    ComputeAStar(start, end, True, ExecTimeMetric("time"), InspectDepth("depth"), InspectWidth("width"))
 
 if __name__ == "__main__":
     main()
