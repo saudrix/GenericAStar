@@ -64,13 +64,32 @@ class TaquinNode(GenericNode):
     def Dist(self,node): return 1
 
     """ Wrongly placed Heuristic """
-    def SetHCost(self,target):
-        wrongSpots = 0
+    #def SetHCost(self,target):
+    #    wrongSpots = 0
+    #    #Getting threw lines
+    #    for i in range(0,len(self.data)):
+    #        #Getting threw columns
+    #        for j in range(0,len(self.data[0])):
+    #            if(self.data[i][j] != target.data[i][j]):
+    #                wrongSpots += 1
+
+    #    self.h = wrongSpots
+
+
+    """ Sum of Manathan distances """
+    def SetHCost(self, target):
+        cost = 0
         #Getting threw lines
         for i in range(0,len(self.data)):
             #Getting threw columns
             for j in range(0,len(self.data[0])):
-                if(self.data[i][j] != target.data[i][j]):
-                    wrongSpots += 1
+                value = self.data[i][j]
+                if(value != '-'):
+                    opti, optj = TaquinNode.getOpt(value)
+                    cost += abs(i-opti) + abs(j-optj)
 
-        return wrongSpots
+        self.h = cost
+
+    def getOpt(val):
+        if(int(val) == 0): return 0 , 0
+        return (int(val) - 1) // 3 , (int(val) - 1) % 3

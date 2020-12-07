@@ -1,7 +1,10 @@
 from core.AStar import ComputeAStar
 from customNodes.CityNode import CityNode
 from customNodes.TaquinNode import TaquinNode
+
+# importing custom metrics
 from customMetrics.time import ExecTimeMetric
+from customMetrics.depth import InspectDepth
 
 
 """
@@ -14,38 +17,12 @@ CityNode('Tls',8,4,['Mar','Lib','Tes'])
 end = CityNode('Lib',4,5,['Bdx','Tes','Mar','Tls'])
 """
 
-#start = TaquinNode([['2','3','4'],['1','-','5'],['8','7','6']])
-start = TaquinNode([['1','2','3'],['4','5','6'],['7','-','8']])
+#start = TaquinNode([['1','2','3'],['4','5','6'],['7','-','8']])
+start = TaquinNode([['4','7','1'],['8','6','3'],['2','5','-']])
 end = TaquinNode([['1','2','3'],['4','5','6'],['7','8','-']])
 
-
 def main():
-    ComputeAStar(start, end, ExecTimeMetric("time"))
+    ComputeAStar(start, end, ExecTimeMetric("time"), InspectDepth("depth"))
 
 if __name__ == "__main__":
     main()
-
-
-
-"""
-from inspect import signature
-
-
-metric is a base function that check a custom metric signature and
-if it checks out computes it
-
-
-
-def metric(customMetric, iteration, status):
-    metricSignature = signature(customMetric)
-    for args in metricSignature.parameters.values():
-        print(args)
-
-    return customMetric(iteration, status)
-
-def GetIterNumber(iteration : int , status : bool ) -> tuple:
-    if(status):
-        return ("ExecTime",iteration)
-    else: return None
-
-"""

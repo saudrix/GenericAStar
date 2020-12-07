@@ -20,7 +20,7 @@ def ComputeAStar(startNode, endNode, *metrics):
         if(currentNode == endNode):
             status = True
             if metrics != None:
-                ComputeMetrics(metricsResult, [status, iter, openSet, closedSet], *metrics)
+                ComputeMetrics(metricsResult, [status, iteration, openSet, closedSet], *metrics)
                 print(metricsResult)
             ConstructPath(currentNode)
             break
@@ -42,7 +42,7 @@ def ComputeAStar(startNode, endNode, *metrics):
 
         # Call custom metrics each lap
         if metrics != None:
-            ComputeMetrics(metricsResult, [status, iter, openSet, closedSet], *metrics)
+            ComputeMetrics(metricsResult, [status, iteration, openSet, closedSet], *metrics)
 
         iteration+=1
 

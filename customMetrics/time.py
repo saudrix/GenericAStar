@@ -8,15 +8,20 @@ class ExecTimeMetric(Metric):
 
     def __init__(self, name):
         self.start = 0;
-        super().__init__(name)
+        Metric.__init__(self,name)
 
     def compute(self):
-        if(self.iter == 0):
+        if(self.iteration == 0):
             self.start = time.time()
             return(self.name, "start counting")
         if(self.status):
-            ellapsedTime = time.time()-self.start / 1000
-            #minutes = ellapsedTime % 60
-            #seconds = ellapsedTime - (minutes * 60)
-            return(self.name, ellapsedTime)
-            return(self.name, f'elps: {minutes} : {seconds} m')
+            ellapsedTime = ExecTimeMetric.truncate(time.time()-self.start,5)
+            return(self.name, f'elps: {ellapsedTime}s')
+
+    def truncate(f, n):
+        '''Truncates/pads a float f to n decimal places without rounding'''
+        s = '{}'.format(f)
+        if 'e' in s or 'E' in s:
+            return '{0:.{1}f}'.format(f, n)
+        i, p, d = s.partition('.')
+        return '.'.join([i, (d+'0'*n)[:n]])

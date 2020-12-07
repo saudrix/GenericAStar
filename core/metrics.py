@@ -10,11 +10,15 @@ class Metric:
 
     def __init__(self, name):
         self.name = name
+        self.status = False
+        self.iteration = 0
+        self.opened = []
+        self.closed = []
         Metric.__metricsCount += 1
 
-    def setup(self, status, iter, opened, closed):
+    def setup(self, status, iteration, opened, closed):
         self.status = status
-        self.iter = iter
+        self.iteration = iteration
         self.opened = opened
         self.closed = closed
 
