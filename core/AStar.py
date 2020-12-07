@@ -1,7 +1,7 @@
 """
 Function conputing A* algorithm in a generic fashion
 """
-def ComputeAStar(startNode, endNode, *metrics):
+def ComputeAStar(startNode, endNode, verbose = False, *metrics):
     openSet = []
     closedSet = []
 
@@ -21,7 +21,7 @@ def ComputeAStar(startNode, endNode, *metrics):
             status = True
             if metrics != None:
                 ComputeMetrics(metricsResult, [status, iteration, openSet, closedSet], *metrics)
-                print(metricsResult)
+                DisplayMetrics(metricsResult, *metrics)
             ConstructPath(currentNode)
             break
 
@@ -56,6 +56,29 @@ def ComputeMetrics(results, params, *metrics):
         result.append(metric.compute())
 
     return results.append(result)
+
+def DisplayMetrics(results, *metrics):
+    display = False
+
+    header = ""
+    header += '| Index |'
+    for metric in metrics:
+        header += f' {metric.name} |'
+
+    print(header)
+    for result in results:
+        line = ""
+        for res in result:
+            if(res != None): display = True
+        if(display):
+            line += f'   {results.index(result)}   |'
+            for res in result:
+                if(res != None):
+                    line += f' {res[1]} |'
+                else:
+                    line += '        |'
+            print(f'{line}\n')
+        display = False
 
 """
 Function used to reconstruct the result path of the algorithm

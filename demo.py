@@ -1,10 +1,13 @@
 from core.AStar import ComputeAStar
+
+# importing custom nodes
 from customNodes.CityNode import CityNode
 from customNodes.TaquinNode import TaquinNode
 
 # importing custom metrics
 from customMetrics.time import ExecTimeMetric
 from customMetrics.depth import InspectDepth
+from customMetrics.wide import InspectWidth
 
 
 """
@@ -22,7 +25,7 @@ start = TaquinNode([['4','7','1'],['8','6','3'],['2','5','-']])
 end = TaquinNode([['1','2','3'],['4','5','6'],['7','8','-']])
 
 def main():
-    ComputeAStar(start, end, ExecTimeMetric("time"), InspectDepth("depth"))
+    ComputeAStar(start, end, False, ExecTimeMetric("time"), InspectDepth("depth"), InspectWidth("width"))
 
 if __name__ == "__main__":
     main()
